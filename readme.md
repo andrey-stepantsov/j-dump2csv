@@ -38,7 +38,7 @@ The SQL engine behind the scene is [H2](http://h2database.com)
 The j-dump2csv utility is available as zip and tar distributions, and it requires Java 8 runtime.
 To interface Oracle databases an Oracle's JDBC driver is required and it can be downloaded here:
 [Oracle JDBC Driver 12c](http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html)
-The ojdbc7.jar file must be placed into the 'lib' folder of distribution.
+The ojdbc7.jar file must be placed into the 'lib' folder of distribution. (For example: /opt/j-dump2csv-x.x.x/lib)
 
 ### Install on Linux ###
 ```
