@@ -60,7 +60,7 @@ folder to a desired destination, then add the 'bin' folder to your path.
 
 #### H2 - column names with special characters ####
 
-Consider a column name USER.ID.RAW, to refer is in a SQL query use double quotes:
+Consider a column name USER.ID.RAW, to refer to it in a SQL query use double quotes:
 ~~~
 query: |-
   SELECT * FROM CSVREAD('data.csv') WHERE "USER.ID.RAW" like '%200%';
@@ -104,9 +104,7 @@ CODE,ALIAS
 ~~~
 dbtype: H2
 uri: "jdbc:h2:mem:"
-database: test1
-user: sa
-password: sa
+database: test
 query: |-
   SELECT * FROM CSVREAD('sample.csv') WHERE CODE like '%1';
 output_format: CSV
