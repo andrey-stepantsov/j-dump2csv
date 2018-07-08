@@ -19,8 +19,10 @@ public class OracleDS implements DS {
         this.config = config;
         ods = new OracleDataSource();
         ods.setURL(config.uri + config.database);
-        ods.setUser(config.user);
-        ods.setPassword(config.password);
+        if(null != config.user && !config.user.isEmpty())
+            ods.setUser(config.user);
+        if(null != config.password && !config.password.isEmpty())
+            ods.setPassword(config.password);
         conn = ods.getConnection();
     }
 

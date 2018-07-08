@@ -19,8 +19,10 @@ public class H2DS implements DS {
         this.config = config;
         h2ds = new JdbcDataSource();
         h2ds.setURL(config.uri + config.database);
-        h2ds.setUser(config.user);
-        h2ds.setPassword(config.password);
+        if(null != config.user && !config.user.isEmpty())
+            h2ds.setUser(config.user);
+        if(null != config.password && !config.password.isEmpty())
+            h2ds.setPassword(config.password);
         conn = h2ds.getConnection();
     }
 

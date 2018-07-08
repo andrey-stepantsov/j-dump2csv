@@ -1,0 +1,47 @@
+
+Synopsis:
+
+    $ j-dump2csv < testdump.conf > testresult.csv 2 > error.log
+
+The command above does:
+ * load a configuration file 'testdump.conf' from the standard input
+ * output to a CSV file 'testresult.csv' from standard output
+ * print all the errors to 'error.log'
+
+To connect to an Oracle DB the 'ojdbc7.jar' is required, download it
+from Oracle's website and place into the 'lib' directory of the local
+installation (/opt/j-dump2csv-x.x.x/lib).
+
+The configuration file uses Yaml syntax.
+
+Properties:
+    dbtype: H2|ORACLE
+    database: a database name
+    uri: a connection string URI for the database
+    user: account/login to access the DB
+    password: a password for the account/login
+    query: a SQL query to obtain the data
+    output_format: CSV|TSV [default: CSV]
+
+The 'testdump.conf' file in the example above could look like:
+
+    dbtype: H2
+    uri: "jdbc:h2:mem:"
+    database: test1
+    user: sa
+    password: sa
+    query: |-
+      SELECT * FROM CSVREAD('sample.csv');
+    output_format: CSV
+
+
+An Oracle config file could look like:
+
+    #sample Oracle config
+    database: SOME_DB
+    uri: jdbc:oracle:thin:@//localhost:1521/
+    user: SOME_USER
+    password: SOME_PWD
+    query: |-
+      select t.* from SYSADM.SOME_TBL t
+    output_format: CSV

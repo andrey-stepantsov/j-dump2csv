@@ -18,7 +18,7 @@ then
     mkdir $full_app_path 2>/dev/null
     cp -r bin/ $full_app_path/
     cp -r lib/ $full_app_path/
-    echo "$full_app_path/bin/$app" > $run_path/$app
+    echo "$full_app_path/bin/$app "'"''$@''"' > $run_path/$app
     chmod ugo+x $run_path/$app
 else
     echo "need permission to write to '""$install_path""', conisder using: 'sudo sh ./install.sh'"

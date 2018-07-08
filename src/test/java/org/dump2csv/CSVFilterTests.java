@@ -18,8 +18,8 @@ public class CSVFilterTests {
         String config = "dbtype: H2\n" +
                 "uri: 'jdbc:h2:mem:'\n" +
                 "database: test1\n" +
-                "user: sa\n" +
-                "password: sa\n" +
+//                "user: sa\n" +
+//                "password: sa\n" +
                 "query: |-\n" +
                 "  SELECT * FROM CSVREAD('"+getURL("csv-filter-test-01.csv")+"') WHERE CODE like '%1';\n" +
                 "output_format: CSV";

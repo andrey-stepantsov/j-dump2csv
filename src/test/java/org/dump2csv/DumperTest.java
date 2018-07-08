@@ -12,10 +12,6 @@ import static org.junit.Assert.assertTrue;
 
 public class DumperTest {
 
-    @Before
-    public void setupStreams() {
-    }
-
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
