@@ -1,0 +1,7 @@
+#sample Oracle config
+database: SOME_DB
+user: SOME_USER
+password: SOME_PWD
+query: |-
+  select t.* from SYSADM.SOME_TBL t
+uri: jdbc:oracle:thin:@//localhost:1521/

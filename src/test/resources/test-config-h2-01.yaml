@@ -1,0 +1,9 @@
+#test config 01, for H2
+dbtype: H2
+uri: "jdbc:h2:mem:"
+database: test1
+user: sa
+password: sa
+query: |-
+  SELECT * FROM TEST1;
+output_format: TSV
