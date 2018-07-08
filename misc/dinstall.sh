@@ -1,7 +1,7 @@
 #
 # This is a helper script simply to help with testing of the 'tar' distribution.
 #
-# I run it as: sh ./scripts/dinstall.sh
+# I run it as: sh ./misc/dinstall.sh
 #
 # In my /usr/local/bin I keep 'dj-dump2csv' script which is simply a one-liner:
 #
