@@ -81,7 +81,7 @@ output_format: CSV
 
 ### Complete Example: Filtering CSV files ###
 
-#### Input CSV file (test.csv) ####
+#### Input CSV file (sample.csv) ####
 ~~~
 CODE,ALIAS
 0001,Snake
