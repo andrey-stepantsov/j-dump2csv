@@ -28,8 +28,8 @@ public class H2Test {
     public void before() throws SQLException {
         JdbcDataSource ds = new JdbcDataSource();
         ds.setURL("jdbc:h2:mem:db1");
-        ds.setUser("sa");
-        ds.setPassword("sa");
+//        ds.setUser("sa");
+//        ds.setPassword("sa");
         conn = ds.getConnection();
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
