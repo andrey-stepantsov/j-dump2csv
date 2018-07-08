@@ -1,6 +1,9 @@
 # j-dump2csv #
 ## Version ##
 This document describes version 1.0.1 of j-dump2csv, released on 2018-07-08
+## Downloads ##
+[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.tar)
+[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.zip)
 ## Synopsis ##
 ~~~
 $ j-dump2csv < testdump.conf > testresult.csv 2 > error.log 
