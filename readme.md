@@ -1,29 +1,4 @@
 # j-dump2csv #
-## Version ##
-This document describes version 1.0.1 of j-dump2csv, released on 2018-07-08
-## Downloads ##
-[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.tar)
-[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.zip)
-## Synopsis ##
-~~~
-$ j-dump2csv < testdump.conf > testresult.csv 2 > error.log 
-~~~
-The command above does:
- * load a configuration file 'testdump.conf' from the standard input
- * output to a CSV file 'testresult.csv' from standard output
- * print all the errors to 'error.log'
-  
-The 'testdump.conf' file in the example above could look like:
-~~~
-dbtype: H2
-uri: "jdbc:h2:mem:"
-database: test1
-user: sa
-password: sa
-query: |-
-  SELECT * FROM CSVREAD('sample.csv');
-output_format: CSV
-~~~
 ## Description ##
 The j-dump2csv utility reads data from a database (currently only from Oracle and H2)
 or a CSV files and prints delimited data to standard output.
@@ -33,6 +8,38 @@ The main intent of the utility is to provide a way to export data from databases
 Because of the utility's ability to read CSV files as relational data, it also can
 be used for filtering and transforming CSV.
 The SQL engine behind the scene is [H2](http://h2database.com)
+## Synopsis ##
+~~~
+$ j-dump2csv < testdump.conf
+~~~
+The command above does:
+ * load a configuration file 'testdump.conf' from the standard input:
+~~~
+dbtype: H2
+uri: "jdbc:h2:mem:"
+database: test
+query: |-
+  SELECT * FROM CSVREAD('sample.csv') WHERE CODE like '%1';
+output_format: CSV
+~~~
+ * reads the 'sample.csv':
+~~~
+CODE,ALIAS
+0001,Snake
+0002,Bull
+0004,Bear
+~~~
+ * prints to standard output:
+~~~
+CODE,ALIAS
+0001,Snake
+~~~
+  
+## Version ##
+This document describes version 1.0.1 of j-dump2csv, released on 2018-07-08
+## Downloads ##
+[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.tar)
+[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.zip)
  
 ## Installation ##
 The j-dump2csv utility is available as zip and tar distributions, and it requires Java 8 runtime.
@@ -91,10 +98,10 @@ CODE,ALIAS
 
 #### Command line ####
 ~~~
-$ j-dump2csv < testdump.conf
+$ j-dump2csv < testdump.conf > testresult.csv 2 > error.log 
 ~~~
 
-#### Sample output ####
+#### Sample output (testresult.csv) ####
 ~~~
 CODE,ALIAS
 0001,Snake
