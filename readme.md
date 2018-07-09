@@ -1,7 +1,7 @@
 # j-dump2csv #
 ## Description ##
 The j-dump2csv utility reads data from a database (currently only from Oracle and H2)
-or a CSV files and prints delimited data to standard output.
+or CSV files and prints delimited data to standard output.
 
 The main intent of the utility is to provide a way to export data from databases.
 
