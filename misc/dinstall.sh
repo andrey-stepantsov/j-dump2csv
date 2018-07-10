@@ -5,7 +5,7 @@
 #
 # In my /usr/local/bin I keep 'dj-dump2csv' script which is simply a one-liner:
 #
-#    /home/<myuser>/dev/j-dump2csv/out/j-dump2csv-1.0-SNAPSHOT/bin/j-dump2csv
+#    /home/<myuser>/dev/j-dump2csv/out/j-dump2csv-1.0-1/bin/j-dump2csv
 #
 # The <myuser> is my local user name depending on my dev machine
 #
