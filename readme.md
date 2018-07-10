@@ -6,8 +6,9 @@ or CSV files and prints delimited data to standard output.
 The main intent of the utility is to provide a way to export data from databases.
 
 Because of the utility's ability to read CSV files as relational data, it also can
-be used for filtering and transforming CSV.
-The SQL engine behind the scene is [H2](http://h2database.com)
+be used for filtering and transforming CSV. Check out this advance [example with JOIN](https://github.com/andrey-stepantsov/j-dump2csv/wiki/Using-%27JOIN%27-with-CSV).
+
+The SQL engine behind the scene is [H2](http://h2database.com).
 ## Synopsis ##
 ~~~
 $ j-dump2csv < testdump.conf
