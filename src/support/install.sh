@@ -1,4 +1,4 @@
-version="1.0.1"
+version="x.x.x" # version placeholder
 install_path="/opt"
 run_path="/usr/local/bin"
 app="j-dump2csv"
