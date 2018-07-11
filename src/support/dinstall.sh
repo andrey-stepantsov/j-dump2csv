@@ -1,6 +1,7 @@
 #
-# This is a helper script simply
-# do not run it manually, instead
+# This is a helper script.
+# Do not run it manually, instead run:
+#
 #    $ sh ./gradlew testTar
 #
 install_path="$1/out"
@@ -12,5 +13,5 @@ then
     #echo "$last_build"
     tar -xf $last_build -C $install_path
 else
-    echo "'$install_path' does not exist - quiting"
+    echo "Path '$install_path' does not exist. Please, create it. Quiting..."
 fi

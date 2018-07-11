@@ -68,5 +68,5 @@ applicationDistribution.from("src/support/install.sh") {
  */
 
 task testTar(type: Exec){
-    commandLine 'sh', 'misc/dinstall.sh', projectDir, buildDir, version
+    commandLine 'sh', 'src/support/dinstall.sh', projectDir, buildDir, version
 }
