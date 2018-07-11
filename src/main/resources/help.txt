@@ -12,6 +12,10 @@ To connect to an Oracle DB the 'ojdbc7.jar' is required, download it
 from Oracle's website and place into the 'lib' directory of the local
 installation (/opt/j-dump2csv-x.x.x/lib).
 
+Options:
+    --version   prints version of the application
+    --help,-h   prints this message
+
 The configuration file uses Yaml syntax.
 
 Properties:

@@ -1,5 +1,5 @@
 group 'j-dump2csv'
-version '1.0.1'
+version '1.0.2-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -41,4 +41,32 @@ distZip {
 }
 distTar {
     exclude("ojdbc7.jar")
+}
+
+applicationDistribution.from("src/support/sample") {
+
+    into "./sample"
+
+}
+
+applicationDistribution.from("src/support/install.sh") {
+    applicationDistribution.from("src/support/sample") {
+
+        into "./sample"
+
+    }
+    filter { String line ->
+        line.startsWith('version=') ? "version=\"${version}\"" : line
+    }
+}
+
+/**
+ * This is a support task for testing contents of tar, run it from terminal
+ *
+ *     $ sh ./gradlew testTar
+ *
+ */
+
+task testTar(type: Exec){
+    commandLine 'sh', 'misc/dinstall.sh', projectDir, buildDir, version
 }

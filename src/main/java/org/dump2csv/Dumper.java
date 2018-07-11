@@ -20,6 +20,14 @@ public class Dumper {
         System.exit(cli(args));
     }
 
+    /**
+     * Checks the CLI options and returns 0 if all is well
+     * In the current version no control options are being fed through
+     * the command line, only --help and --version
+     * @param args
+     * @return 0 if continue work, not 0 if to quit
+     * @throws IOException
+     */
     public static int options(String[] args) throws IOException {
         int status = 0;
         switch (args.length) {
@@ -29,10 +37,12 @@ public class Dumper {
                 switch (args[0]) {
                     case "--version":
                         System.out.println("j-dump2csv, version:" + version());
+                        status = 1;
+                        break;
                     case "-h":
                     case "--help":
                         System.out.println(help());
-                        status = 0;
+                        status = 1;
                         break;
                     default:
                         System.out.println("use -h or --help for information; an unknown option: " + args[0]);
@@ -49,9 +59,7 @@ public class Dumper {
         Logger logger = LoggerFactory.getLogger(Dumper.class);
         int status = 0;
         try {
-            if (0 != options(args)) {
-                throw new RuntimeException("unknown option"); //TODO: report unknown option
-            } else {
+            if (0 == options(args)) {
                 Config config = Config.load(System.in);
                 DS ds = openDS(config);
                 ResultSet rs = ds.query(config.query);
