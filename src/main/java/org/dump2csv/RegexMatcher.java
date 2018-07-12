@@ -6,7 +6,7 @@ public class RegexMatcher extends org.hamcrest.TypeSafeMatcher<String> {
 
     private final String regex;
 
-    public RegexMatcher(final String regex) {
+    private RegexMatcher(final String regex) {
         this.regex = regex;
     }
 

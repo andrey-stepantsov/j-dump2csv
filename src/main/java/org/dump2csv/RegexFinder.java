@@ -9,7 +9,7 @@ public class RegexFinder extends TypeSafeMatcher<String> {
 
     private final String regex;
 
-    public RegexFinder(final String regex) {
+    private RegexFinder(final String regex) {
         this.regex = regex;
     }
 

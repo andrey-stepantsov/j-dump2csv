@@ -49,7 +49,7 @@ applicationDistribution.from("src/support/sample") {
 
 }
 
-applicationDistribution.from("src/support/install.sh") {
+applicationDistribution.from("src/support/install") {
     applicationDistribution.from("src/support/sample") {
 
         into "./sample"
@@ -63,10 +63,10 @@ applicationDistribution.from("src/support/install.sh") {
 /**
  * This is a support task for testing contents of tar, run it from terminal
  *
- *     $ sh ./gradlew testTar
+ *     $ sh ./gradlew checkTar
  *
  */
 
-task testTar(type: Exec){
-    commandLine 'sh', 'src/support/dinstall.sh', projectDir, buildDir, version
+task checkTar(type: Exec){
+    commandLine 'sh', 'src/support/checkinstall', projectDir, buildDir, version
 }

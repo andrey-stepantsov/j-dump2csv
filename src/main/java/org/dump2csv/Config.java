@@ -5,7 +5,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;
 
 public class Config {
-    public DBTYPE dbtype = DBTYPE.UNKNOWN;
+    public final DBTYPE dbtype = DBTYPE.UNKNOWN;
     public OUTPUT_FORMAT output_format;
     public String user;
     public String password;

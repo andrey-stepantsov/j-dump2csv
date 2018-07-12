@@ -1,3 +1,4 @@
+#!/bin/sh
 version="x.x.x" # version placeholder
 install_path="/opt"
 run_path="/usr/local/bin"

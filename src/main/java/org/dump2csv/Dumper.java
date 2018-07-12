@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class Dumper {
@@ -28,7 +27,7 @@ public class Dumper {
      * @return 0 if continue work, not 0 if to quit
      * @throws IOException
      */
-    public static int options(String[] args) throws IOException {
+    private static int options(String[] args) throws IOException {
         int status = 0;
         switch (args.length) {
             case 0:
@@ -65,6 +64,7 @@ public class Dumper {
                 ResultSet rs = ds.query(config.query);
                 dump(rs, config.output_format == Config.OUTPUT_FORMAT.CSV);
                 rs.close();
+                ds.close();
             }
         } catch (Throwable t) {
             status = 1;
@@ -73,13 +73,13 @@ public class Dumper {
         return status;
     }
 
-    public static void dump(ResultSet rs, boolean useDefault) throws SQLException, IOException {
+    private static void dump(ResultSet rs, boolean useDefault) throws SQLException, IOException {
         final CSVPrinter printer = (useDefault ? CSVFormat.DEFAULT : CSVFormat.TDF)
                 .withHeader(rs).print(new PrintStream(System.out));
         ResultSetMetaData md = rs.getMetaData();
         int columnCount = md.getColumnCount();
         while (rs.next()) {
-            ArrayList<Object> l = new ArrayList(columnCount);
+            ArrayList<Object> l = new ArrayList<>(columnCount);
             for (int i = 1; i <= columnCount; i++) {
                 l.add(rs.getObject(i));
             }
@@ -95,7 +95,7 @@ public class Dumper {
      * @throws SQLException
      */
     static DS openDS(Config config) throws SQLException {
-        DS ds = null;
+        DS ds;
         switch (config.dbtype) {
             case ORACLE:
                 ds = new OracleDS();
@@ -111,11 +111,11 @@ public class Dumper {
         return ds;
     }
 
-    static public String version() {
+    private static String version() {
         return System.getProperty("org.dump2csv.Dumper.version");
     }
 
-    static public String help() throws IOException {
+    private static String help() throws IOException {
         return ResourceHelpers.readText(ResourceHelpers.getReader("help.txt"));
     }
 }
