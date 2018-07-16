@@ -6,6 +6,8 @@
 #
 install_path="$1/out"
 
+mkdir -p $install_path
+
 if [ -d $install_path ]
 then
     echo "'$install_path' exists - installing"
