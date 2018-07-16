@@ -5,7 +5,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;
 
 public class Config {
-    public final DBTYPE dbtype = DBTYPE.UNKNOWN;
+    public DBTYPE dbtype = DBTYPE.UNKNOWN;
     public OUTPUT_FORMAT output_format;
     public String user;
     public String password;
@@ -21,6 +21,7 @@ public class Config {
     public enum DBTYPE {
         ORACLE("ORACLE"),
         H2("H2"),
+        MYSQL("MYSQL"),
         UNKNOWN("UNKNOWN");
 
         private final String value;

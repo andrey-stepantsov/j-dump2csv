@@ -103,6 +103,9 @@ public class Dumper {
             case H2:
                 ds = new H2DS();
                 break;
+            case MYSQL:
+                ds = new MySQLDS();
+                break;
             case UNKNOWN:
             default:
                 throw new RuntimeException("unsupported DB type: '" + config.dbtype + "'");
