@@ -8,16 +8,13 @@ import java.sql.Statement;
 
 public class OracleDS implements DS {
 
-    OracleDataSource ods;
-    Connection conn;
-    Config config;
+    private Connection conn;
 
     public OracleDS(){
     }
 
-    public void open(Config config) throws java.sql.SQLException {
-        this.config = config;
-        ods = new OracleDataSource();
+    public void open(final Config config) throws java.sql.SQLException {
+        OracleDataSource ods = new OracleDataSource();
         ods.setURL(config.uri + config.database);
         if(null != config.user && !config.user.isEmpty())
             ods.setUser(config.user);

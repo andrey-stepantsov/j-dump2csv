@@ -21,6 +21,7 @@ public class Config {
     public enum DBTYPE {
         ORACLE("ORACLE"),
         H2("H2"),
+        MYSQL("MYSQL"),
         UNKNOWN("UNKNOWN");
 
         private final String value;

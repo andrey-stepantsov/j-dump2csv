@@ -83,7 +83,7 @@ public class H2FakeDSTest {
         int columnCount = md.getColumnCount();
         while (rs.next())
         {
-            ArrayList<Object> l = new ArrayList(columnCount);
+            ArrayList<Object> l = new ArrayList<>(columnCount);
             for(int i = 1; i <= columnCount; i++){
                 l.add(rs.getObject(i));
             }

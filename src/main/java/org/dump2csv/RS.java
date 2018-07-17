@@ -5,14 +5,43 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RS {
-    public String name = "";
-    public String comment = "";
-    public String SQLQuery;
-    public ArrayList<String> header = new ArrayList<>();
-    public ArrayList<String> types = new ArrayList<>();
-    public ArrayList<ArrayList<Object>> rows = new ArrayList<>();
-    public String error;
+class RS {
+    private final String name = "";
+    private final String comment = "";
+    private String SQLQuery;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getSQLQuery() {
+        return SQLQuery;
+    }
+
+    public ArrayList<String> getHeader() {
+        return header;
+    }
+
+    public ArrayList<String> getTypes() {
+        return types;
+    }
+
+    public ArrayList<ArrayList<Object>> getRows() {
+        return rows;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    private final ArrayList<String> header = new ArrayList<>();
+    private final ArrayList<String> types = new ArrayList<>();
+    private final ArrayList<ArrayList<Object>> rows = new ArrayList<>();
+    private String error;
 
     public void fillFrom(ResultSet rset) throws SQLException {
         ResultSetMetaData md = rset.getMetaData();
@@ -22,7 +51,7 @@ public class RS {
             types.add(md.getColumnTypeName(idx));
         }
         while (rset.next()) {
-            ArrayList<Object> row = new ArrayList<Object>();
+            ArrayList<Object> row = new ArrayList<>();
             rows.add(row);
             for (int idx = 1; idx <= ccount; idx++) {
                 switch (md.getColumnTypeName(idx)) {

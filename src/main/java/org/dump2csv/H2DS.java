@@ -8,16 +8,13 @@ import java.sql.Statement;
 
 public class H2DS implements DS {
 
-    JdbcDataSource h2ds;
-    Connection conn;
-    Config config;
+    private Connection conn;
 
     public H2DS(){
     }
 
-    public void open(Config config) throws java.sql.SQLException {
-        this.config = config;
-        h2ds = new JdbcDataSource();
+    public void open(final Config config) throws java.sql.SQLException {
+        JdbcDataSource h2ds = new JdbcDataSource();
         h2ds.setURL(config.uri + config.database);
         if(null != config.user && !config.user.isEmpty())
             h2ds.setUser(config.user);

@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ResourceHelpers {
+class ResourceHelpers {
 
 
     public static boolean textMatch(String text, String regex) {
@@ -29,7 +29,7 @@ public class ResourceHelpers {
                 .getResourceAsStream(name), StandardCharsets.UTF_8));
     }
 
-    public static String printText(Object object) throws IOException {
+    public static String printText(Object object) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(bytes);
         printStream.print(object);
@@ -40,7 +40,7 @@ public class ResourceHelpers {
 
         BufferedReader bufferedReader = new BufferedReader(reader);
         StringWriter writer = new StringWriter();
-        String line = null;
+        String line;
         while ((line = bufferedReader.readLine()) != null) {
             writer.append(line);
             writer.append('\n');

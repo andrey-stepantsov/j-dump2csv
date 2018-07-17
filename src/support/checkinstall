@@ -1,0 +1,19 @@
+#
+# This is a helper script.
+# Do not run it manually, instead run:
+#
+#    $ sh ./gradlew testTar
+#
+install_path="$1/out"
+
+mkdir -p $install_path
+
+if [ -d $install_path ]
+then
+    echo "'$install_path' exists - installing"
+    last_build="$2/distributions/j-dump2csv-$3.tar"
+    #echo "$last_build"
+    tar -xf $last_build -C $install_path
+else
+    echo "Path '$install_path' does not exist. Please, create it. Quiting..."
+fi

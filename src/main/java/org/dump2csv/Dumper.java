@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class Dumper {
@@ -20,7 +19,15 @@ public class Dumper {
         System.exit(cli(args));
     }
 
-    public static int options(String[] args) throws IOException {
+    /**
+     * Checks the CLI options and returns 0 if all is well
+     * In the current version no control options are being fed through
+     * the command line, only --help and --version
+     * @param args
+     * @return 0 if continue work, not 0 if to quit
+     * @throws IOException
+     */
+    private static int options(String[] args) throws IOException {
         int status = 0;
         switch (args.length) {
             case 0:
@@ -29,10 +36,12 @@ public class Dumper {
                 switch (args[0]) {
                     case "--version":
                         System.out.println("j-dump2csv, version:" + version());
+                        status = 1;
+                        break;
                     case "-h":
                     case "--help":
                         System.out.println(help());
-                        status = 0;
+                        status = 1;
                         break;
                     default:
                         System.out.println("use -h or --help for information; an unknown option: " + args[0]);
@@ -49,14 +58,13 @@ public class Dumper {
         Logger logger = LoggerFactory.getLogger(Dumper.class);
         int status = 0;
         try {
-            if (0 != options(args)) {
-                throw new RuntimeException("unknown option"); //TODO: report unknown option
-            } else {
+            if (0 == options(args)) {
                 Config config = Config.load(System.in);
                 DS ds = openDS(config);
                 ResultSet rs = ds.query(config.query);
                 dump(rs, config.output_format == Config.OUTPUT_FORMAT.CSV);
                 rs.close();
+                ds.close();
             }
         } catch (Throwable t) {
             status = 1;
@@ -65,13 +73,13 @@ public class Dumper {
         return status;
     }
 
-    public static void dump(ResultSet rs, boolean useDefault) throws SQLException, IOException {
+    private static void dump(ResultSet rs, boolean useDefault) throws SQLException, IOException {
         final CSVPrinter printer = (useDefault ? CSVFormat.DEFAULT : CSVFormat.TDF)
                 .withHeader(rs).print(new PrintStream(System.out));
         ResultSetMetaData md = rs.getMetaData();
         int columnCount = md.getColumnCount();
         while (rs.next()) {
-            ArrayList<Object> l = new ArrayList(columnCount);
+            ArrayList<Object> l = new ArrayList<>(columnCount);
             for (int i = 1; i <= columnCount; i++) {
                 l.add(rs.getObject(i));
             }
@@ -87,13 +95,16 @@ public class Dumper {
      * @throws SQLException
      */
     static DS openDS(Config config) throws SQLException {
-        DS ds = null;
+        DS ds;
         switch (config.dbtype) {
             case ORACLE:
                 ds = new OracleDS();
                 break;
             case H2:
                 ds = new H2DS();
+                break;
+            case MYSQL:
+                ds = new MySQLDS();
                 break;
             case UNKNOWN:
             default:
@@ -103,11 +114,11 @@ public class Dumper {
         return ds;
     }
 
-    static public String version() {
+    private static String version() {
         return System.getProperty("org.dump2csv.Dumper.version");
     }
 
-    static public String help() throws IOException {
+    private static String help() throws IOException {
         return ResourceHelpers.readText(ResourceHelpers.getReader("help.txt"));
     }
 }
