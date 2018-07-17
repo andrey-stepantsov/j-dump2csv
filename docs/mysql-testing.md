@@ -1,6 +1,10 @@
 
-# For Vagrant 2 #
+# MySQL Integration Testing with Vagrant 2 #
 
+## Pre-requiste ##
+Install Vagrant
+
+## Instructions ##
 run:
 ~~~
 $ vagrant init hashicorp/precise64
