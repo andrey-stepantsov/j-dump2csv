@@ -53,9 +53,9 @@ The ojdbc7.jar file must be placed into the 'lib' folder of distribution. (For e
 # assuming that the tar file was downloaded to the user's '~/Downloads' folder
 # and the '/opt' folder exists
 $ cd ~/Downloads
-$ tar -xvf j-dump2csv-1.0.1.tar
-$ cd j-dump2csv-1.0.1
-$ sudo ./install
+$ tar -xvf j-dump2csv-1.0.2-SNAPSHOT.tar
+$ cd j-dump2csv-1.0.2-SNAPSHOT
+$ sudo sh ./install
 ```
 
 ### Install on Windows ###
