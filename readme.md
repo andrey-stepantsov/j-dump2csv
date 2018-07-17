@@ -39,8 +39,8 @@ CODE,ALIAS
 ## Version ##
 This document describes version 1.0.2 of j-dump2csv, released on 2018-07-08
 ## Downloads ##
-[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.tar)
-[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.zip)
+[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2-SNAPSHOT.tar)
+[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2-SNAPSHOT.zip)
  
 ## Installation ##
 The j-dump2csv utility is available as zip and tar distributions, and it requires Java 8 runtime.
