@@ -1,5 +1,5 @@
 group 'j-dump2csv'
-version '1.0.2-SNAPSHOT'
+version '1.0.2rc2'
 
 apply plugin: 'java'
 apply plugin: 'application'

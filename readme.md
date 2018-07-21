@@ -39,8 +39,8 @@ CODE,ALIAS
 ## Version ##
 This document describes version 1.0.2 of j-dump2csv, released on 2018-07-08
 ## Downloads ##
-[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2-SNAPSHOT.tar)
-[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2-SNAPSHOT.zip)
+[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2rc2.tar)
+[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2rc2.zip)
  
 ## Installation ##
 The j-dump2csv utility is available as zip and tar distributions, and it requires Java 8 runtime.
@@ -53,9 +53,9 @@ The ojdbc7.jar file must be placed into the 'lib' folder of distribution. (For e
 # assuming that the tar file was downloaded to the user's '~/Downloads' folder
 # and the '$HOME/opt' folder exists
 $ cd ~/Downloads
-$ tar -xvf j-dump2csv-1.0.2.tar
-$ cd j-dump2csv-1.0.2
-$ sudo sh ./install
+$ tar -xvf j-dump2csv-1.0.2rc2.tar
+$ cd j-dump2csv-1.0.2rc2
+$ sh ./install
 ```
 
 ### Install on Windows ###
@@ -120,3 +120,12 @@ query: |-
   SELECT * FROM CSVREAD('sample.csv') WHERE CODE like '%1';
 output_format: CSV
 ~~~
+
+### Testing MySQL with Vagrant 2 ###
+
+The 'doc' folder of the installation directory contains 'mysql-testing.md' file that
+describes steps to configure a testing instance of an Ubuntu machine with MySQL and
+automatically initialize a small testing database.
+
+The 'samples' folder contains 'mysql-test.conf' file that can be used for a test with
+the MySQL DB running on the testing machine.

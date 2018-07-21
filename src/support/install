@@ -27,6 +27,7 @@ then
     cp -r lib/ ${full_app_path}/
     cp -r docs/ ${full_app_path}/
     cp -r samples/ ${full_app_path}/
+    cp -r vagrant_mysql/ ${full_app_path}/
     echo "${full_app_path}/bin/${app} "'"''$@''"' > ${run_path}/${app}
     chmod ugo+x ${run_path}/${app}
 else
