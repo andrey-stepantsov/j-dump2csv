@@ -37,13 +37,15 @@ distTar {
     exclude("ojdbc7.jar")
 }
 
-applicationDistribution.from("src/support/sample") {
-    into "./sample"
-}
-
 applicationDistribution.from("src/support/install") {
-    applicationDistribution.from("src/support/sample") {
-        into "./sample"
+    applicationDistribution.from("src/support/samples") {
+        into "./samples"
+    }
+    applicationDistribution.from("src/support/vagrant_mysql") {
+        into "./vagrant_mysql"
+    }
+    applicationDistribution.from("docs") {
+        into "./docs"
     }
     filter { String line ->
         line.startsWith('version=') ? "version=\"${version}\"" : line
@@ -66,5 +68,6 @@ task testMySQL (type: Test){
     systemProperty "test.myslq.password", "test"
     systemProperty "test.myslq.uri","jdbc:mysql://localhost:13306/"
     systemProperty "test.myslq.database", "testdb"
+    outputs.upToDateWhen { false }
 }
 

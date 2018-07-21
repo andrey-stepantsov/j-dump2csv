@@ -1,35 +1,4 @@
-
-# For Vagrant 2 #
-
-run:
-~~~
-$ vagrant init hashicorp/precise64
-~~~
-edit 'Vagrantfile' file, so it contains:
-~~~ruby
-# Vagrant
-Vagrant.configure("2") do |config|
-  #...
-  config.vm.network "forwarded_port", guest: 3306, host: 13306
-  config.vm.provision :shell, path: "bootstrap.sh"
-  #...
-end
-~~~
-
-place 'bootstrap.sh' and 'mysql.sh' files in your machine directory:
-
-~~~
 #!/bin/bash
-# 'bootstrap.sh'
-apt-get update -y 
-sudo apt-get install vim -y
-apt-get -y install zsh htop
-sh /vagrant/mysql.sh
-~~~
-
-~~~
-#!/bin/bash
-#'mysql.sh'
 pass="test" # for 'root' and for 'testuser'
 
 #installing mysql
@@ -53,17 +22,4 @@ GRANT ALL PRIVILEGES ON *.* TO 'testuser'@'%' IDENTIFIED BY '${pass}' WITH GRANT
 FLUSH PRIVILEGES;
 exit
 EOF
-~~~
 
-run the following, it will comment out all the 'bind-address' options in the MySQL config:
-~~~
-#
-vagrant up
-vagrant ssh
-#after being promted with the shell 
-cp /etc/mysql/my.cnf /home/vagrant/my.cnf.bak
-sed -e 's/\(^bind-address\)/#\1/g' ~/my.cnf.bak >~/my.cnf
-sudo cp /home/vagrant/my.cnf /etc/mysql/my.cnf
-rm ~/my.cnf
-sudo restart mysql
-~~~

@@ -4,16 +4,30 @@
 #
 #    $ sh ./gradlew testTar
 #
-install_path="$1/out"
+# This script creates a test 'dj-dump2csv' in $HOME/bin and point is to
+# a temporary deployment folder in the 'out' folder of the project
+#
+version=$3
+dj_path="${HOME}/bin/dj-dump2csv" #debug cli
+install_path="$1/out"           #debug deployment location
 
-mkdir -p $install_path
+mkdir -p ${install_path}
 
-if [ -d $install_path ]
+if [ -d ${install_path} ]
 then
-    echo "'$install_path' exists - installing"
+    echo "'${install_path}' exists - installing"
     last_build="$2/distributions/j-dump2csv-$3.tar"
-    #echo "$last_build"
-    tar -xf $last_build -C $install_path
+    echo "installing build: ${last_build}"
+    tar -xf ${last_build} -C ${install_path}
+    echo "creating ${dj_path}"
+    if [ -d "${HOME}/bin" ]
+    then
+        echo "#!/bin/sh" >${dj_path} && \
+        echo "${install_path}/j-dump2csv-${version}/bin/j-dump2csv "'"''$@''"' >${dj_path} && \
+        chmod ugo+x ${dj_path}
+    else
+        echo "error: cannot create ${dj_path}"
+    fi
 else
-    echo "Path '$install_path' does not exist. Please, create it. Quiting..."
+    echo "Path '${install_path}' does not exist. Please, create it. Quiting..."
 fi
