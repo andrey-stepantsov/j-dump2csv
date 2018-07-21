@@ -1,7 +1,13 @@
 #!/bin/sh
+#
+# This script installs the j-dump2csv to $HOME/opt folder
+# and the startup script is being installed to $HOME/bin
+#
+# This should be compatible with most Linux, CygWin, and MinGW configrations
+#
 version="x.x.x" # version placeholder
-install_path="/opt"
-run_path="/usr/local/bin"
+install_path="${HOME}/opt"
+run_path="${HOME}/bin"
 app="j-dump2csv"
 echo "Installing ${app}, version: ${version}"
 
@@ -19,6 +25,8 @@ then
     mkdir ${full_app_path} 2>/dev/null
     cp -r bin/ ${full_app_path}/
     cp -r lib/ ${full_app_path}/
+    cp -r docs/ ${full_app_path}/
+    cp -r samples/ ${full_app_path}/
     echo "${full_app_path}/bin/${app} "'"''$@''"' > ${run_path}/${app}
     chmod ugo+x ${run_path}/${app}
 else

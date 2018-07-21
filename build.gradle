@@ -38,8 +38,14 @@ distTar {
 }
 
 applicationDistribution.from("src/support/install") {
-    applicationDistribution.from("src/support/sample") {
-        into "./sample"
+    applicationDistribution.from("src/support/samples") {
+        into "./samples"
+    }
+    applicationDistribution.from("src/support/vagrant_mysql") {
+        into "./vagrant_mysql"
+    }
+    applicationDistribution.from("docs") {
+        into "./docs"
     }
     filter { String line ->
         line.startsWith('version=') ? "version=\"${version}\"" : line
