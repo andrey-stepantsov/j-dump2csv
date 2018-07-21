@@ -63,6 +63,7 @@ test {
 }
 
 task testMySQL (type: Test){
+    outputs.upToDateWhen { false }
     systemProperty "test.myslq.user", "testuser"
     systemProperty "test.myslq.password", "test"
     systemProperty "test.myslq.uri","jdbc:mysql://localhost:13306/"

@@ -1,6 +1,6 @@
 # j-dump2csv #
 ## Description ##
-The j-dump2csv utility reads data from a database (currently only from Oracle and H2)
+The j-dump2csv utility reads data from a database (current version only from Oracle, MySQL, and H2)
 or CSV files and prints delimited data to standard output.
 
 The main intent of the utility is to provide a way to export data from databases.
@@ -37,10 +37,10 @@ CODE,ALIAS
 ~~~
   
 ## Version ##
-This document describes version 1.0.1 of j-dump2csv, released on 2018-07-08
+This document describes version 1.0.2 of j-dump2csv, released on 2018-07-08
 ## Downloads ##
-[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.tar)
-[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.1/j-dump2csv-1.0.1.zip)
+[tar](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2-SNAPSHOT.tar)
+[zip](https://github.com/andrey-stepantsov/j-dump2csv/releases/download/1.0.2rc/j-dump2csv-1.0.2-SNAPSHOT.zip)
  
 ## Installation ##
 The j-dump2csv utility is available as zip and tar distributions, and it requires Java 8 runtime.
@@ -120,76 +120,3 @@ query: |-
   SELECT * FROM CSVREAD('sample.csv') WHERE CODE like '%1';
 output_format: CSV
 ~~~
-
-### Configuring MySQL for remote access  ###
-
-~~~sh
-#
-# bootstrap.sh vor vagrant
-apt-get update -y #&& apt-get upgrade -y
-
-#echo "America/Los_Angeles" > /etc/timezone
-echo "UTC" > /etc/timezone
-dpkg-reconfigure -f noninteractive tzdata
-sudo apt-get install vim -y
-
-apt-get -y install zsh htop
-
-
-echo "mysql-server mysql-server/root_password password test" | sudo debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password test" | sudo debconf-set-selections
-apt-get install -y mysql-server
-
-sudo mysqladmin -ptest create testdb
-~~~
-
-`mysql-install.sh`:
-~~~sh
-#!/bin/sh
-cat << EOF | sudo mysql -ptest testdb
-CREATE TABLE info (code varchar(10), name varchar(128), description varchar(128));
-INSERT INTO info () values("0001","snake","lives in the desert");
-INSERT INTO info () values("0002","rat","lives in the hole");
-EOF
-
-#any of:
-#netstat -tln
-#cat /etc/mysql/my.cnf |grep  port
-#mysql> show global variables like 'port%';
-
-#sudo /etc/init.d/mysql start
-#  or
-#sudo start mysql  
-
-#ufw enable
-#ufw allow 22
-#ufw allow 3306
-~~~
-
-in `/etc/mysql/my.cnf`
-find and comment 
-~~~
-...
-bind-address           = 127.0.0.1
-...
-~~~
-
-~~~
-$ mysql -u root -ptest
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'test' WITH GRANT OPTION;
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'%' IDENTIFIED BY 'test' WITH GRANT OPTION;
-mysql> FLUSH PRIVILEGES;
-mysql> exit
-$ sudo restart mysql
-~~~
-
-Timezone:
-~~~
-&serverTimezone=UTC
-useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-~~~
-
-~~~
-$ mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -ptest mysql
-~~~
-
