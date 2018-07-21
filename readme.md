@@ -49,6 +49,7 @@ To interface Oracle databases an Oracle's JDBC driver is required and it can be 
 The ojdbc7.jar file must be placed into the 'lib' folder of distribution. (For example: /opt/j-dump2csv-x.x.x/lib)
 
 ### Install on Linux ###
+The current install script assumes that `$HOME/bin` folder exists and is in the PATH, and `$HOME/opt` folder exists.
 ```
 # assuming that the tar file was downloaded to the user's '~/Downloads' folder
 # and the '$HOME/opt' folder exists
@@ -60,7 +61,10 @@ $ sh ./install
 
 ### Install on Windows ###
 An install script for Windows is not provided. However, you can install the utility 
-with CygWin or MinGW using the linux instructions.
+with CygWin or MinGW using the linux instructions. 
+
+Cygwin directory layout does not have `~/Downloads`, so you should locate and navigate to this folder. It is likely in
+`/cygwindrive/c/Users/<user>/Downloads` 
 
 Otherwise, unzip the distribution files and move the entire
 folder to a desired destination, then add the 'bin' folder to your path.
