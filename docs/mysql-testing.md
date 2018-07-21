@@ -1,4 +1,3 @@
-
 # For Vagrant 2 #
 
 run:
@@ -16,8 +15,7 @@ Vagrant.configure("2") do |config|
 end
 ~~~
 
-
-place bootstrap.sh' and 'mysql.sh' files in your testing directory:
+place 'bootstrap.sh' and 'mysql.sh' files in your machine directory:
 
 ~~~
 #!/bin/bash
@@ -56,15 +54,15 @@ exit
 EOF
 ~~~
 
-
 run the following, it will comment out all the 'bind-address' options in the MySQL config:
-
 ~~~
+#
 vagrant up
 vagrant ssh
 #after being promted with the shell 
 cp /etc/mysql/my.cnf /home/vagrant/my.cnf.bak
 sed -e 's/\(^bind-address\)/#\1/g' ~/my.cnf.bak >~/my.cnf
 sudo cp /home/vagrant/my.cnf /etc/mysql/my.cnf
+rm ~/my.cnf
 sudo restart mysql
 ~~~
