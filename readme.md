@@ -58,6 +58,18 @@ $ tar -xvf j-dump2csv-1.0.2.tar
 $ cd j-dump2csv-1.0.2
 $ sh ./install
 ```
+You can test the installation:
+```
+$ cd samples
+$ j-dump2csv <testjoin.conf
+ALIAS,HOME
+Snake,Desert hole
+Bull,Prairies
+Bear,Forest
+Mouse,House
+Rat,Hole
+Tiger,Jungles
+```
 
 ### Install on Windows ###
 An install script for Windows is not provided. However, you can install the utility 
