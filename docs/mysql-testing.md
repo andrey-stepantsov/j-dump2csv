@@ -16,7 +16,8 @@ Vagrant.configure("2") do |config|
 end
 ~~~
 
-place 'bootstrap.sh' and 'mysql.sh' files in your machine directory:
+Place the 'bootstrap.sh' and 'mysql.sh' files into your testing machine directory.
+Sample copies of the files are installed with the utility (by default into: $HOME/opt/j-dump2csv-x.x.x/vagrant_mysql).
 
 ~~~
 #!/bin/bash

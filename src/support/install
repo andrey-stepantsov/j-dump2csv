@@ -9,20 +9,20 @@ version="x.x.x" # version placeholder
 install_path="${HOME}/opt"
 run_path="${HOME}/bin"
 app="j-dump2csv"
-echo "Installing ${app}, version: ${version}"
+full_app_path="${install_path}/${app}-${version}"
 
-if [ ! -d ${install_path} ]
-then
-    echo "${app} is expected to install to '""${install_path}""' directory;"
-    echo "please, create the '""${install_path}""' directory"
-    exit 1
-fi
+echo "Installing ${app}, version: ${version}"
+echo "The installation path: '"${full_app_path}"'"
+echo "'"${app}"' command will be placed into '"${run_path}"'"' (make sure it is in $PATH)'
+
+[ ! -d ${full_app_path} ] && ! mkdir -p ${full_app_path} && \
+         (echo "Consider creating: '"${full_app_path}"' manually, and re-run install." && exit 1)
+
+[ ! -d ${run_path} ] && ! mkdir -p ${run_path} && \
+         (echo "Consider creating: '"${run_path}"' manually, and re-run install." && exit 1)
 
 if [ -w ${install_path} ]
 then
-    full_app_path="${install_path}/${app}-${version}"
-    #echo "full path: ${full_app_path}"
-    mkdir ${full_app_path} 2>/dev/null
     cp -r bin/ ${full_app_path}/
     cp -r lib/ ${full_app_path}/
     cp -r docs/ ${full_app_path}/
