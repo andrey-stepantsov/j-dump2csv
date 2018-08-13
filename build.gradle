@@ -70,3 +70,11 @@ task testMySQL (type: Test){
     systemProperty "test.myslq.database", "testdb"
 }
 
+task testOracle (type: Test){
+    outputs.upToDateWhen { false }
+    systemProperty "test.oracle.user", "testuser"
+    systemProperty "test.oracle.password", "test"
+    systemProperty "test.oracle.uri","jdbc:mysql://localhost:13306/"
+    systemProperty "test.oracle.database", "testdb"
+}
+
